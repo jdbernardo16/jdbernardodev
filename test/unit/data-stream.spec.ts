@@ -25,7 +25,7 @@ describe('data stream', () => {
 
     game.turn('up')
     game.tick()
-    expect(game.snake.value[0]).toEqual({ x: 5, y: 6 })
+    expect(game.snake.value[0]).toEqual({ x: 5, y: 4 })
   })
 
   it('eats food and grows', () => {

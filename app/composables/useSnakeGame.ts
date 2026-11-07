@@ -36,8 +36,8 @@ export interface SnakeGameState {
 const BEST_KEY = 'data-stream-best'
 
 const DELTAS: Record<Direction, Cell> = {
-  up: { x: 0, y: 1 },
-  down: { x: 0, y: -1 },
+  up: { x: 0, y: -1 },
+  down: { x: 0, y: 1 },
   left: { x: -1, y: 0 },
   right: { x: 1, y: 0 },
 }
@@ -70,7 +70,7 @@ export function useSnakeGame(options: SnakeGameOptions = {}): SnakeGameState {
   const direction = ref<Direction>('right')
   const score = ref(0)
   const best = ref(0)
-  const speed = ref(240)
+  const speed = ref(300)
 
   const queue: Direction[] = []
 
@@ -168,7 +168,7 @@ export function useSnakeGame(options: SnakeGameOptions = {}): SnakeGameState {
 
     if (eating) {
       score.value += 1
-      speed.value = Math.max(110, 240 - score.value * 8)
+      speed.value = Math.max(140, 300 - score.value * 10)
       spawnFood()
       if (score.value % 3 === 0) spawnBug()
     }
@@ -204,7 +204,7 @@ export function useSnakeGame(options: SnakeGameOptions = {}): SnakeGameState {
     direction.value = 'right'
     queue.length = 0
     score.value = 0
-    speed.value = 240
+    speed.value = 300
     bugs.value = []
     spawnFood()
   }
@@ -222,7 +222,7 @@ export function useSnakeGame(options: SnakeGameOptions = {}): SnakeGameState {
     snake.value = []
     bugs.value = []
     score.value = 0
-    speed.value = 240
+    speed.value = 300
     queue.length = 0
   }
 

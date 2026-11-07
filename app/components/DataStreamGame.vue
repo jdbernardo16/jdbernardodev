@@ -152,7 +152,7 @@ async function initThree(): Promise<boolean> {
   scene.fog = new THREE.FogExp2(0x08090b, 0.035)
 
   camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100)
-  camera.position.set(8, 10, 8)
+  camera.position.set(0, 12, 8)
   camera.lookAt(0, 0, 0)
 
   scene.add(new THREE.AmbientLight(0x7cffb2, 0.7))
@@ -250,6 +250,7 @@ function scheduleTick() {
   if (status.value !== 'playing') return
 
   tickTimer = setTimeout(() => {
+    tickTimer = undefined
     tick()
     syncScene()
 
@@ -264,12 +265,17 @@ function scheduleTick() {
 async function startGame() {
   if (reduced.value) return
 
+  if (tickTimer) {
+    clearTimeout(tickTimer)
+    tickTimer = undefined
+  }
+
   const ready = await initThree()
   if (!ready) return
 
   start()
   syncScene()
-  lastEvent.value = 'press an arrow / WASD to move'
+  lastEvent.value = 'press an arrow, WASD, or the D-pad'
 }
 
 function turnDirection(nextDirection: Direction) {
@@ -283,7 +289,10 @@ function turnDirection(nextDirection: Direction) {
 function pauseGame() {
   if (status.value !== 'playing') return
   pause()
-  if (tickTimer) clearTimeout(tickTimer)
+  if (tickTimer) {
+    clearTimeout(tickTimer)
+    tickTimer = undefined
+  }
   lastEvent.value = 'build paused'
 }
 
@@ -330,14 +339,37 @@ function handleKeydown(event: KeyboardEvent) {
   }
 }
 
+let swipeStart: { x: number; y: number } | null = null
+
+function handleSwipeStart(event: PointerEvent) {
+  if (status.value !== 'playing' && status.value !== 'ready') return
+  swipeStart = { x: event.clientX, y: event.clientY }
+}
+
+function handleSwipeEnd(event: PointerEvent) {
+  if (!swipeStart) return
+
+  const dx = event.clientX - swipeStart.x
+  const dy = event.clientY - swipeStart.y
+  swipeStart = null
+
+  if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) return
+
+  if (Math.abs(dx) > Math.abs(dy)) {
+    turnDirection(dx > 0 ? 'right' : 'left')
+  } else {
+    turnDirection(dy > 0 ? 'down' : 'up')
+  }
+}
+
 function handlePointerMove(event: PointerEvent) {
   if (!camera || !stage.value) return
   const rect = stage.value.getBoundingClientRect()
   const x = ((event.clientX - rect.left) / rect.width) * 2 - 1
   const y = ((event.clientY - rect.top) / rect.height) * 2 - 1
 
-  camera.position.x += (8 + x * 0.8 - camera.position.x) * 0.05
-  camera.position.y += (10 - y * 0.5 - camera.position.y) * 0.05
+  camera.position.x += (x * 0.8 - camera.position.x) * 0.05
+  camera.position.y += (12 - y * 0.5 - camera.position.y) * 0.05
   camera.lookAt(0, 0, 0)
 }
 
@@ -348,7 +380,10 @@ function handleVisibility() {
 function cleanup() {
   running = false
   window.cancelAnimationFrame(frame)
-  if (tickTimer) clearTimeout(tickTimer)
+  if (tickTimer) {
+    clearTimeout(tickTimer)
+    tickTimer = undefined
+  }
   resizeObserver?.disconnect()
   window.removeEventListener('keydown', handleKeydown)
   window.removeEventListener('visibilitychange', handleVisibility)
@@ -441,7 +476,12 @@ onBeforeUnmount(cleanup)
         </div>
       </div>
 
-      <div ref="stage" class="relative h-80 overflow-hidden bg-black/40 md:h-96">
+      <div
+        ref="stage"
+        class="relative h-80 touch-none overflow-hidden bg-black/40 md:h-96"
+        @pointerdown="handleSwipeStart"
+        @pointerup="handleSwipeEnd"
+      >
         <div ref="canvasHost" class="absolute inset-0" />
 
         <div
@@ -463,7 +503,7 @@ onBeforeUnmount(cleanup)
               ▶ run data-stream
             </button>
             <p class="mt-3 font-mono text-xs uppercase tracking-widest text-muted">
-              arrows / wasd · space to pause
+              arrows / wasd · swipe · space to pause
             </p>
           </div>
         </div>
@@ -473,7 +513,7 @@ onBeforeUnmount(cleanup)
           class="pointer-events-none absolute inset-x-0 bottom-4 flex justify-center"
         >
           <p class="rounded-full border border-terminal/40 bg-ink/85 px-4 py-2 font-mono text-xs uppercase tracking-widest text-terminal">
-            press an arrow / WASD to move
+            press an arrow, WASD, or the D-pad
           </p>
         </div>
 
@@ -543,7 +583,7 @@ onBeforeUnmount(cleanup)
             data-testid="turn-up"
             :disabled="status !== 'playing' && status !== 'ready'"
             aria-label="Move up"
-            class="flex h-10 w-10 items-center justify-center rounded-lg border border-line/60 font-mono text-sm text-bone transition-colors hover:border-terminal hover:text-terminal disabled:opacity-30"
+            class="flex h-11 w-11 items-center justify-center rounded-lg border border-line/60 font-mono text-sm text-bone transition-colors hover:border-terminal hover:text-terminal disabled:opacity-30"
             @click="turnDirection('up')"
           >
             ↑
@@ -554,7 +594,7 @@ onBeforeUnmount(cleanup)
             data-testid="turn-left"
             :disabled="status !== 'playing' && status !== 'ready'"
             aria-label="Move left"
-            class="flex h-10 w-10 items-center justify-center rounded-lg border border-line/60 font-mono text-sm text-bone transition-colors hover:border-terminal hover:text-terminal disabled:opacity-30"
+            class="flex h-11 w-11 items-center justify-center rounded-lg border border-line/60 font-mono text-sm text-bone transition-colors hover:border-terminal hover:text-terminal disabled:opacity-30"
             @click="turnDirection('left')"
           >
             ←
@@ -564,7 +604,7 @@ onBeforeUnmount(cleanup)
             data-testid="turn-down"
             :disabled="status !== 'playing' && status !== 'ready'"
             aria-label="Move down"
-            class="flex h-10 w-10 items-center justify-center rounded-lg border border-line/60 font-mono text-sm text-bone transition-colors hover:border-terminal hover:text-terminal disabled:opacity-30"
+            class="flex h-11 w-11 items-center justify-center rounded-lg border border-line/60 font-mono text-sm text-bone transition-colors hover:border-terminal hover:text-terminal disabled:opacity-30"
             @click="turnDirection('down')"
           >
             ↓
@@ -574,7 +614,7 @@ onBeforeUnmount(cleanup)
             data-testid="turn-right"
             :disabled="status !== 'playing' && status !== 'ready'"
             aria-label="Move right"
-            class="flex h-10 w-10 items-center justify-center rounded-lg border border-line/60 font-mono text-sm text-bone transition-colors hover:border-terminal hover:text-terminal disabled:opacity-30"
+            class="flex h-11 w-11 items-center justify-center rounded-lg border border-line/60 font-mono text-sm text-bone transition-colors hover:border-terminal hover:text-terminal disabled:opacity-30"
             @click="turnDirection('right')"
           >
             →
