@@ -7,8 +7,10 @@
       Skip to content
     </a>
 
+    <AppHeader />
     <main id="main">
       <slot />
     </main>
+    <AppFooter />
   </div>
 </template>
