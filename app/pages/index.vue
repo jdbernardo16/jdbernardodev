@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { services } from '~/data/services'
+import { workStudies } from '~/data/work'
 </script>
 
 <template>
@@ -7,6 +8,7 @@ import { services } from '~/data/services'
     <HeroSection />
     <ProofStrip />
     <ServicesSection :services="services" />
+    <WorkSection :studies="workStudies" />
     <SecuritySection />
     <AboutSection />
   </div>
