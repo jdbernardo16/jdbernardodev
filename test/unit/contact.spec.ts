@@ -5,7 +5,7 @@ const valid = {
   name: 'Ana Cruz',
   email: 'ana@example.com',
   projectType: 'AI agent',
-  budget: '5k-10k',
+  budget: '₱50k–₱100k',
   message: 'I need an agent that monitors orders and notifies my team.',
   consent: true,
 }

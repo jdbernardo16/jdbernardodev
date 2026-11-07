@@ -21,7 +21,7 @@ const status = ref<'idle' | 'sending' | 'success' | 'error'>('idle')
 const gotcha = ref('')
 
 const projectTypes = ['AI agent', 'AI assistant', 'AI integration', 'VAPT', 'Web development', 'Other']
-const budgets = ['Under 5k', '5k–10k', '10k–25k', '25k+', 'Not sure']
+const budgets = ['₱20k–₱50k', '₱50k–₱100k', '₱100k–₱250k', '₱250k+', 'Not sure']
 
 const mailtoHref = computed(() => {
   const subject = encodeURIComponent(`Project inquiry: ${form.projectType || 'AI / web'}`)
