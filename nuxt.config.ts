@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     ],
   },
   site: {
-    url: 'https://jdbernardo.dev',
+    url: 'https://jdbernardodev.site',
     name: 'Jaydee Bernardo',
     description: 'AI systems that automate real work.',
     defaultLocale: 'en',

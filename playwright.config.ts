@@ -5,7 +5,10 @@ const useWebServer = !process.env.PLAYWRIGHT_NO_SERVER
 export default defineConfig({
   testDir: './test/e2e',
   timeout: 60_000,
-  use: { baseURL: 'http://127.0.0.1:3000', channel: 'chromium' },
+  use: {
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://127.0.0.1:3000',
+    channel: 'chromium',
+  },
   ...(useWebServer
     ? {
         webServer: {

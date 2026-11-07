@@ -8,7 +8,7 @@ export const site: SiteConfig = {
   location: 'Marilao, Bulacan, Philippines',
   linkedin: 'https://www.linkedin.com/in/john-dennis-bernardo-1603b2176',
   github: 'https://github.com/jdbernardo16',
-  url: 'https://jdbernardo.dev',
+  url: 'https://jdbernardodev.site',
   nav: [
     { label: 'Work', href: '#work' },
     { label: 'Services', href: '#services' },
