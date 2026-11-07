@@ -12,7 +12,7 @@ const prefersReducedMotion = useReducedMotion()
 const isStatic = computed(() => props.reducedMotion ?? prefersReducedMotion.value)
 
 useAgentFlow({
-  canvas,
+  canvas: canvas as unknown as import('vue').Ref<HTMLCanvasElement | null>,
   reducedMotion: isStatic,
   onSelect: (id) => emit('select', id),
 })

@@ -93,8 +93,8 @@ export function useAgentFlow(options: UseAgentFlowOptions) {
     context.clearRect(0, 0, width, height)
 
     for (let index = 0; index < nodes.length - 1; index += 1) {
-      const start = nodes[index]
-      const end = nodes[index + 1]
+      const start = nodes[index]!
+      const end = nodes[index + 1]!
       context.beginPath()
       context.moveTo(start.x, start.y)
       context.lineTo(end.x, end.y)

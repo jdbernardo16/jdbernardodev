@@ -21,7 +21,7 @@ describe('work section', () => {
     const wrapper = await mountSuspended(AgentConsole, {
       props: { studies: workStudies, reducedMotion: true },
     })
-    expect(wrapper.findAll('[data-testid="console-line"]')).toHaveLength(workStudies[0].consoleLines.length)
+    expect(wrapper.findAll('[data-testid="console-line"]')).toHaveLength(workStudies[0]!.consoleLines.length)
     expect(wrapper.find('[data-testid="console-play"]').exists()).toBe(false)
   })
 })
