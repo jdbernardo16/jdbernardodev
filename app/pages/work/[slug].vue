@@ -18,6 +18,8 @@ useSeoMeta({
   ogTitle: `${study.title} — Jaydee Bernardo`,
   ogDescription: study.summary,
 })
+
+useScrollReveal()
 </script>
 
 <template>
@@ -117,7 +119,7 @@ useSeoMeta({
         </NuxtLink>
       </div>
 
-      <div class="mt-12 rounded-2xl border border-line/60 bg-surface/30 p-6">
+      <div class="mt-12 rounded-2xl border border-line/60 bg-surface/30 p-6" data-reveal>
         <p class="font-mono text-xs uppercase tracking-widest text-amber">Next step</p>
         <p class="mt-3 font-display text-3xl text-bone">
           Have a workflow that needs an agent?

@@ -8,6 +8,13 @@ const emit = defineEmits<{ 'open-command': [] }>()
 function closeMenu() {
   isMenuOpen.value = false
 }
+
+function openCommandPalette() {
+  emit('open-command')
+  if (import.meta.client) {
+    window.dispatchEvent(new CustomEvent('open-command-palette'))
+  }
+}
 </script>
 
 <template>
@@ -33,7 +40,7 @@ function closeMenu() {
       </nav>
 
       <div class="flex items-center gap-3">
-        <button type="button" class="sr-only" @click="emit('open-command')">
+        <button type="button" class="sr-only" @click="openCommandPalette">
           Open command palette
         </button>
 

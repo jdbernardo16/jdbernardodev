@@ -5,7 +5,7 @@ defineProps<{ studies: WorkStudy[] }>()
 </script>
 
 <template>
-  <section id="work" class="border-b border-line/40">
+  <section id="work" class="border-b border-line/40" data-reveal>
     <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
       <SectionHeading
         eyebrow="Selected work"

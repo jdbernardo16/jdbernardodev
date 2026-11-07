@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { commandItems } from '~/data/commands'
+</script>
+
 <template>
   <div class="min-h-screen bg-ink text-bone">
     <a
@@ -12,5 +16,6 @@
       <slot />
     </main>
     <AppFooter />
+    <CommandPalette :items="commandItems" />
   </div>
 </template>

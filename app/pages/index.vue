@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { services } from '~/data/services'
 import { workStudies } from '~/data/work'
+
+useScrollReveal()
 </script>
 
 <template>

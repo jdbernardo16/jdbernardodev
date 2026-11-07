@@ -1,5 +1,5 @@
 <template>
-  <section id="security" class="border-b border-line/40 bg-surface/20">
+  <section id="security" class="border-b border-line/40 bg-surface/20" data-reveal>
     <div class="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-12 md:py-24">
       <div class="md:col-span-5">
         <SectionHeading

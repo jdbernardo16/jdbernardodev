@@ -42,12 +42,12 @@ function handleSelect(id: FlowNode['id']) {
         </p>
 
         <div class="mt-9 flex flex-wrap gap-3">
-          <a
+          <MagneticButton
             href="#contact"
             class="inline-flex items-center rounded-full bg-amber px-6 py-3 font-mono text-xs font-semibold uppercase tracking-widest text-ink transition-transform hover:-translate-y-0.5"
           >
             Start a project
-          </a>
+          </MagneticButton>
           <a
             href="#work"
             class="inline-flex items-center rounded-full border border-line px-6 py-3 font-mono text-xs font-semibold uppercase tracking-widest text-bone transition-colors hover:border-amber hover:text-amber"

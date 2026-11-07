@@ -5,7 +5,7 @@ defineProps<{ services: Service[] }>()
 </script>
 
 <template>
-  <section id="services" class="border-b border-line/40">
+  <section id="services" class="border-b border-line/40" data-reveal>
     <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
       <SectionHeading
         eyebrow="Services"
