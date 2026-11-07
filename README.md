@@ -66,6 +66,25 @@ The site is statically generated. Deploy `.output/public` to any static host, or
 - Build command: `pnpm generate`
 - Output directory: `.output/public`
 
+### Cloudflare Pages
+
+Connect the repository through **Workers & Pages → Create → Pages → Connect to Git** and use:
+
+- Build command: `pnpm generate`
+- Build output directory: `dist`
+- Environment variables: `NODE_VERSION=22`, `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`
+- Optional: `NUXT_PUBLIC_FORMSPREE_ENDPOINT` for the contact form
+
+Cloudflare sets `CF_PAGES=1` during builds, so Nuxt selects its Cloudflare preset and writes the static output to `dist/` instead of `.output/public/` (this also generates the `_headers` file). The repository's `.node-version` file pins Node 22.
+
+For a manual deploy without Git integration:
+
+```bash
+pnpm dlx wrangler login
+CF_PAGES=1 pnpm generate
+pnpm dlx wrangler pages deploy dist --project-name portfolio2026
+```
+
 `@nuxtjs/seo` generates `sitemap.xml` and `robots.txt` from the `site` config in `nuxt.config.ts`.
 
 ## Content guardrails
