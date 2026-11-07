@@ -149,22 +149,22 @@ async function initThree(): Promise<boolean> {
   canvasHost.value.appendChild(renderer.domElement)
 
   scene = new THREE.Scene()
-  scene.fog = new THREE.FogExp2(0x08090b, 0.035)
+  scene.fog = new THREE.FogExp2(0x2d2a2e, 0.035)
 
   camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100)
   camera.position.set(0, 12, 8)
   camera.lookAt(0, 0, 0)
 
-  scene.add(new THREE.AmbientLight(0x7cffb2, 0.7))
-  const key = new THREE.DirectionalLight(0xf2efe9, 1.3)
+  scene.add(new THREE.AmbientLight(0xffd866, 0.6))
+  const key = new THREE.DirectionalLight(0xfcfcfa, 1.3)
   key.position.set(6, 10, 6)
   scene.add(key)
-  const rim = new THREE.PointLight(0x22d3ee, 2, 30)
+  const rim = new THREE.PointLight(0x78dce8, 2, 30)
   rim.position.set(-6, 4, -4)
   scene.add(rim)
 
   const size = gridSize * CELL
-  const grid = new THREE.GridHelper(size, gridSize, 0x2f6b52, 0x17352a)
+  const grid = new THREE.GridHelper(size, gridSize, 0x514c51, 0x332f33)
   const gridMaterial = grid.material as import('three').Material
   gridMaterial.transparent = true
   gridMaterial.opacity = 0.85
@@ -172,7 +172,7 @@ async function initThree(): Promise<boolean> {
 
   const plane = new THREE.Mesh(
     new THREE.PlaneGeometry(size, size),
-    new THREE.MeshStandardMaterial({ color: 0x0b0c0e, metalness: 0.2, roughness: 0.8 }),
+    new THREE.MeshStandardMaterial({ color: 0x262428, metalness: 0.2, roughness: 0.8 }),
   )
   plane.rotation.x = -Math.PI / 2
   plane.position.y = -0.02
@@ -180,21 +180,21 @@ async function initThree(): Promise<boolean> {
 
   const border = new THREE.LineSegments(
     new THREE.EdgesGeometry(new THREE.BoxGeometry(size, 0.15, size)),
-    new THREE.LineBasicMaterial({ color: 0x7cffb2, transparent: true, opacity: 0.22 }),
+    new THREE.LineBasicMaterial({ color: 0xffd866, transparent: true, opacity: 0.22 }),
   )
   border.position.y = -0.05
   scene.add(border)
 
   headMaterial = new THREE.MeshStandardMaterial({
-    color: 0x7cffb2,
-    emissive: 0x7cffb2,
+    color: 0xffd866,
+    emissive: 0xffd866,
     emissiveIntensity: 1.4,
     metalness: 0.4,
     roughness: 0.3,
   })
   bodyMaterial = new THREE.MeshStandardMaterial({
-    color: 0x2c7a57,
-    emissive: 0x1f6b4a,
+    color: 0xfc9867,
+    emissive: 0x9c5c2e,
     emissiveIntensity: 0.7,
     metalness: 0.4,
     roughness: 0.4,
@@ -211,20 +211,20 @@ async function initThree(): Promise<boolean> {
   foodMesh = new THREE.Mesh(
     new THREE.IcosahedronGeometry(0.32, 0),
     new THREE.MeshStandardMaterial({
-      color: 0x22d3ee,
-      emissive: 0x22d3ee,
+      color: 0x78dce8,
+      emissive: 0x78dce8,
       emissiveIntensity: 1.6,
       metalness: 0.5,
       roughness: 0.2,
     }),
   )
-  foodMesh.add(new THREE.PointLight(0x22d3ee, 2, 5))
+  foodMesh.add(new THREE.PointLight(0x78dce8, 2, 5))
   scene.add(foodMesh)
 
   const bugGeometry = new THREE.OctahedronGeometry(0.3, 0)
   const bugMaterial = new THREE.MeshStandardMaterial({
-    color: 0xff4d6d,
-    emissive: 0xff4d6d,
+    color: 0xff6188,
+    emissive: 0xff6188,
     emissiveIntensity: 1.2,
     metalness: 0.3,
     roughness: 0.4,
@@ -478,7 +478,7 @@ onBeforeUnmount(cleanup)
 
       <div
         ref="stage"
-        class="relative h-80 touch-none overflow-hidden bg-black/40 md:h-96"
+        class="relative h-80 touch-none overflow-hidden bg-ink md:h-96"
         @pointerdown="handleSwipeStart"
         @pointerup="handleSwipeEnd"
       >

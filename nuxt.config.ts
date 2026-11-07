@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   },
   fonts: {
     families: [
-      { name: 'Instrument Serif', provider: 'google' },
+      { name: 'Space Grotesk', provider: 'google' },
       { name: 'Inter', provider: 'google' },
       { name: 'JetBrains Mono', provider: 'google' },
     ],
