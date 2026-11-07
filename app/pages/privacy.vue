@@ -4,6 +4,7 @@ import { site } from '~/data/site'
 useSeoMeta({
   title: 'Privacy — Jaydee Bernardo',
   description: 'How this site handles contact form data.',
+  ogImage: '/og-image.svg',
 })
 </script>
 

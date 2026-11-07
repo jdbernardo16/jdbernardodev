@@ -17,6 +17,8 @@ useSeoMeta({
   description: study.summary,
   ogTitle: `${study.title} — Jaydee Bernardo`,
   ogDescription: study.summary,
+  ogImage: '/og-image.svg',
+  twitterCard: 'summary_large_image',
 })
 
 useScrollReveal()
