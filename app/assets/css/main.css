@@ -45,6 +45,16 @@
   }
 }
 
+.data-grid-preview {
+  background-image:
+    linear-gradient(oklch(0.86 0.19 155 / 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.86 0.19 155 / 0.14) 1px, transparent 1px);
+  background-size: 32px 32px;
+  transform: perspective(700px) rotateX(58deg) rotateZ(-45deg) scale(1.55);
+  transform-origin: center;
+  mask-image: radial-gradient(circle at center, black 25%, transparent 72%);
+}
+
 
 .hero-glow {
   background: radial-gradient(

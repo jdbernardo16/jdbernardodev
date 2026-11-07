@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('case study tabs support arrow keys', async ({ page }) => {
   await page.goto('/work/education-agent')
+  await expect(page.getByRole('tablist')).toHaveAttribute('data-hydrated', 'true')
 
   const readme = page.getByRole('tab', { name: 'README' })
   await readme.focus()

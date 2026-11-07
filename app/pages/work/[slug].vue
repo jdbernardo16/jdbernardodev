@@ -116,6 +116,7 @@ useScrollReveal()
       <div class="mt-10 overflow-hidden rounded-2xl border border-line/60 bg-surface/30">
         <div
           role="tablist"
+          :data-hydrated="mounted"
           aria-label="Case study sections"
           class="flex gap-1 overflow-x-auto border-b border-line/60 px-3 py-2"
         >

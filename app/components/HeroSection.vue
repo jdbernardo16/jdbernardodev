@@ -44,18 +44,21 @@ import { site } from '~/data/site'
           Available for selected projects · {{ site.location }}
         </p>
 
-        <div class="mt-10 border-t border-line/40 pt-4 font-mono text-xs text-muted">
-          <p><span class="text-terminal">$</span> status</p>
-          <p class="mt-1 text-bone">
-            <span class="text-terminal">●</span> build passing · agent online
+        <div class="mt-6 rounded-xl border border-line/60 bg-surface/30 p-4 font-mono text-xs">
+          <p class="text-muted">// find me on github:</p>
+          <p class="mt-1">
+            <span class="text-magenta">const</span>
+            <span class="ml-1 text-cyan">githubLink</span>
+            <span class="mx-1 text-muted">=</span>
+            <span class="text-terminal">"https://github.com/jdbernardo16"</span>
           </p>
         </div>
       </div>
 
       <div class="md:col-span-7">
-        <BugSmashGame />
+        <DataStreamGame />
         <p class="mt-3 text-center font-mono text-xs uppercase tracking-widest text-muted">
-          Squash the bugs. Ship the build. Start a project.
+          Collect the data. Avoid the bugs. Ship the build.
         </p>
       </div>
     </div>

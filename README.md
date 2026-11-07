@@ -30,7 +30,7 @@ pnpm test:e2e     # Playwright end-to-end tests
 - **Site identity, links, navigation:** `app/data/site.ts`
 - **Case studies:** `app/data/work.ts`
 - **Services:** `app/data/services.ts`
-- **Bug Smash file grid:** `app/data/bugSmash.ts`
+- **Data Stream game:** `app/composables/useSnakeGame.ts` and `app/components/DataStreamGame.vue`
 - **Command palette entries:** `app/data/commands.ts`
 
 Case studies are typed with `WorkStudy` in `app/types/content.ts`. Keep the four slugs stable unless you also update internal links.

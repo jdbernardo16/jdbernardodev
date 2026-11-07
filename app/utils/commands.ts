@@ -31,7 +31,7 @@ export function runCommand(command: ParsedCommand, context: CommandContext): Com
           '  open <slug>     open a case study',
           '  whoami          print the short bio',
           '  contact         jump to the contact section',
-          '  play            point to the Bug Smash game',
+          '  play            point to the Data Stream game',
           '  clear           clear the terminal',
           '  close           close the terminal',
         ],
@@ -66,8 +66,8 @@ export function runCommand(command: ParsedCommand, context: CommandContext): Com
     case 'play':
       return {
         output: [
-          'bug smash is in the hero.',
-          'scroll up and press "run build" — click/tap a bug or press 1–9 to squash it.',
+          'data stream is in the hero.',
+          'scroll up and press "run data-stream" — arrows/WASD to move, space to pause.',
         ],
       }
     case 'clear':

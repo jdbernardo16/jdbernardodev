@@ -470,3 +470,29 @@ The Agent Lab and Three.js pipeline were scrapped. The hero now uses **Bug Smash
 - It works with mouse, touch, and keyboard.
 - It is short enough to replay and light enough to keep the hero fast.
 - It keeps the developer theme without pretending the visitor is building an AI agent.
+
+---
+
+## 18. V4 — Data Stream (3D Snake) (approved 2026-11-07)
+
+Bug Smash was replaced after feedback that the hero needed to feel like a real game. The hero now uses **Data Stream**, a Three.js isometric Snake game inspired by the reference's Snake energy but visually and mechanically different.
+
+### The game
+
+- A 10×10 neon circuit board in 3D, viewed isometrically.
+- The player guides a glowing packet (snake) with Arrow keys / WASD, the on-screen D-pad, or touch.
+- Collect cyan data nodes to score and grow. Red bug nodes spawn as the score rises; hitting one ends the run.
+- Walls and self-collisions end the run.
+- The snake waits for the first direction key after **run data-stream**, so the player can orient before moving.
+- HUD: score, best, data collected, length. Space pauses; Escape pauses.
+- Game-over screen: data collected, best, length, replay, and a `Start a project` CTA.
+- `prefers-reduced-motion`: the game is replaced with a static panel and a direct contact CTA.
+- WebGL unavailable: a static fallback with a contact CTA.
+- Three.js is dynamically imported only after the visitor presses **run data-stream**, so it does not affect the initial LCP. The idle state uses a CSS isometric grid preview.
+
+### Why it replaced Bug Smash
+
+- It is a real, replayable arcade game (Snake) with a 3D twist.
+- It fits the developer/terminal theme and the user's reference without copying it.
+- It demonstrates Three.js and interaction craft directly.
+- It avoids reflex-only whack-a-mole and gives the visitor agency.
