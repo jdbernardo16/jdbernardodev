@@ -149,13 +149,13 @@ async function initThree(): Promise<boolean> {
   canvasHost.value.appendChild(renderer.domElement)
 
   scene = new THREE.Scene()
-  scene.fog = new THREE.FogExp2(0x2d2a2e, 0.035)
+  scene.fog = new THREE.FogExp2(0x1a181c, 0.035)
 
   camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100)
   camera.position.set(0, 12, 8)
   camera.lookAt(0, 0, 0)
 
-  scene.add(new THREE.AmbientLight(0xffd866, 0.6))
+  scene.add(new THREE.AmbientLight(0xffc148, 0.6))
   const key = new THREE.DirectionalLight(0xfcfcfa, 1.3)
   key.position.set(6, 10, 6)
   scene.add(key)
@@ -164,7 +164,7 @@ async function initThree(): Promise<boolean> {
   scene.add(rim)
 
   const size = gridSize * CELL
-  const grid = new THREE.GridHelper(size, gridSize, 0x514c51, 0x332f33)
+  const grid = new THREE.GridHelper(size, gridSize, 0x3d3a40, 0x26232a)
   const gridMaterial = grid.material as import('three').Material
   gridMaterial.transparent = true
   gridMaterial.opacity = 0.85
@@ -172,7 +172,7 @@ async function initThree(): Promise<boolean> {
 
   const plane = new THREE.Mesh(
     new THREE.PlaneGeometry(size, size),
-    new THREE.MeshStandardMaterial({ color: 0x262428, metalness: 0.2, roughness: 0.8 }),
+    new THREE.MeshStandardMaterial({ color: 0x211e22, metalness: 0.2, roughness: 0.8 }),
   )
   plane.rotation.x = -Math.PI / 2
   plane.position.y = -0.02
@@ -180,14 +180,14 @@ async function initThree(): Promise<boolean> {
 
   const border = new THREE.LineSegments(
     new THREE.EdgesGeometry(new THREE.BoxGeometry(size, 0.15, size)),
-    new THREE.LineBasicMaterial({ color: 0xffd866, transparent: true, opacity: 0.22 }),
+    new THREE.LineBasicMaterial({ color: 0xffc148, transparent: true, opacity: 0.22 }),
   )
   border.position.y = -0.05
   scene.add(border)
 
   headMaterial = new THREE.MeshStandardMaterial({
-    color: 0xffd866,
-    emissive: 0xffd866,
+    color: 0xffc148,
+    emissive: 0xffc148,
     emissiveIntensity: 1.4,
     metalness: 0.4,
     roughness: 0.3,

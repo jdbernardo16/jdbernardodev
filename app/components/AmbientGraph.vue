@@ -50,7 +50,7 @@ function resize() {
 
 function drawGrid() {
   if (!context) return
-  context.strokeStyle = 'rgba(255, 216, 102, 0.045)'
+  context.strokeStyle = 'rgba(255, 193, 72, 0.045)'
   context.lineWidth = 1
 
   for (let x = 0; x < width; x += 80) {
@@ -77,7 +77,7 @@ function draw() {
   for (const node of nodes) {
     context.beginPath()
     context.arc(node.x, node.y, node.size, 0, Math.PI * 2)
-    context.fillStyle = 'rgba(255, 216, 102, 0.28)'
+    context.fillStyle = 'rgba(255, 193, 72, 0.28)'
     context.fill()
   }
 
@@ -91,7 +91,7 @@ function draw() {
       context.beginPath()
       context.moveTo(a.x, a.y)
       context.lineTo(b.x, b.y)
-      context.strokeStyle = `rgba(255, 216, 102, ${0.08 * (1 - distance / 150)})`
+      context.strokeStyle = `rgba(255, 193, 72, ${0.08 * (1 - distance / 150)})`
       context.lineWidth = 1
       context.stroke()
     }

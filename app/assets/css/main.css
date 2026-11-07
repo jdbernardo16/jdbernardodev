@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  /* Monokai Pro (Standard) palette — source hex noted per token */
-  --color-ink: oklch(0.2898 0.0083 317.71); /* #2d2a2e background */
-  --color-surface: oklch(0.3307 0.0037 308.32); /* #363537 panels */
-  --color-line: oklch(0.3897 0.0056 314.74); /* #464447 borders */
+  /* Monokai Pro (Standard)-derived palette, dark-gold variant — source hex noted per token */
+  --color-ink: oklch(0.213 0.0083 308.02); /* #1a181c background */
+  --color-surface: oklch(0.2558 0.0079 308.11); /* #242226 panels */
+  --color-line: oklch(0.3389 0.0102 319.45); /* #3a363b borders */
   --color-bone: oklch(0.9905 0.0026 106.55); /* #fcfcfa foreground */
   --color-muted: oklch(0.7306 0.0036 325.58); /* #a9a7a9 secondary text */
   --color-amber: oklch(0.7737 0.1364 46.2); /* #fc9867 orange */
-  --color-terminal: oklch(0.8939 0.1387 90.47); /* #ffd866 primary yellow accent */
+  --color-terminal: oklch(0.8469 0.1499 80.54); /* #ffc148 primary gold accent */
   --color-cyan: oklch(0.8381 0.0952 205.65); /* #78dce8 cyan */
   --color-magenta: oklch(0.7058 0.1936 8.45); /* #ff6188 pink */
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
@@ -48,8 +48,8 @@
 
 .data-grid-preview {
   background-image:
-    linear-gradient(oklch(0.8939 0.1387 90.47 / 0.14) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(0.8939 0.1387 90.47 / 0.14) 1px, transparent 1px);
+    linear-gradient(oklch(0.8469 0.1499 80.54 / 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.8469 0.1499 80.54 / 0.14) 1px, transparent 1px);
   background-size: 32px 32px;
   transform: perspective(700px) rotateX(58deg) rotateZ(-45deg) scale(1.55);
   transform-origin: center;
@@ -60,7 +60,7 @@
 .hero-glow {
   background: radial-gradient(
     circle at 20% 20%,
-    oklch(0.8939 0.1387 90.47 / 0.08),
+    oklch(0.8469 0.1499 80.54 / 0.08),
     transparent 40%
   );
 }

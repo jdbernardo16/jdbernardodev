@@ -10,9 +10,9 @@ import { site } from "~/data/site";
         />
 
         <div
-            class="relative mx-auto grid max-w-7xl gap-14 px-6 pb-20 pt-20 md:grid-cols-12 md:items-center md:pb-28 md:pt-28"
+            class="relative mx-auto grid max-w-7xl gap-14 px-6 pb-16 pt-16 md:grid-cols-12 md:items-center md:pb-16 md:pt-16"
         >
-            <div class="md:col-span-5">
+            <div class="min-w-0 md:col-span-5">
                 <p
                     class="font-mono text-xs uppercase tracking-widest text-terminal"
                 >
@@ -22,7 +22,11 @@ import { site } from "~/data/site";
                 <h1
                     class="mt-5 font-display text-6xl leading-none tracking-tight text-bone md:text-8xl"
                 >
-                    Jaydee Bernardo
+                    Jaydee
+                    <span
+                        class="bg-gradient-to-r from-terminal to-amber bg-clip-text text-transparent"
+                        >Bernardo</span
+                    >
                 </h1>
 
                 <p
@@ -63,7 +67,7 @@ import { site } from "~/data/site";
                     class="mt-6 rounded-xl border border-line/60 bg-surface/30 p-4 font-mono text-xs"
                 >
                     <p class="text-muted">// find me on github:</p>
-                    <p class="mt-1">
+                    <p class="mt-1 break-words">
                         <span class="text-magenta">const</span>
                         <span class="ml-1 text-cyan">githubLink</span>
                         <span class="mx-1 text-muted">=</span>
@@ -74,7 +78,7 @@ import { site } from "~/data/site";
                 </div>
             </div>
 
-            <div class="md:col-span-7">
+            <div class="min-w-0 md:col-span-7">
                 <DataStreamGame />
                 <p
                     class="mt-3 text-center font-mono text-xs uppercase tracking-widest text-muted"
