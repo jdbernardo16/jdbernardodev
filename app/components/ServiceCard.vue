@@ -7,9 +7,9 @@ defineProps<{ service: Service }>()
 <template>
   <article
     data-testid="service-card"
-    class="flex flex-col rounded-2xl border border-line/60 bg-surface/30 p-6 transition-colors hover:border-amber/50"
+    class="flex flex-col rounded-2xl border border-line/60 bg-surface/30 p-6 transition-colors hover:border-terminal/50"
   >
-    <p class="font-mono text-xs uppercase tracking-widest text-amber">
+    <p class="font-mono text-xs uppercase tracking-widest text-terminal">
       {{ service.id }}
     </p>
 
@@ -34,7 +34,7 @@ defineProps<{ service: Service }>()
     <a
       v-if="service.workSlug"
       :href="`/work/${service.workSlug}`"
-      class="mt-5 inline-flex font-mono text-xs uppercase tracking-widest text-bone transition-colors hover:text-amber"
+      class="mt-5 inline-flex font-mono text-xs uppercase tracking-widest text-bone transition-colors hover:text-terminal"
     >
       See the work →
     </a>

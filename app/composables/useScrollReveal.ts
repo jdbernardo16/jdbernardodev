@@ -19,7 +19,6 @@ export function useScrollReveal(selector = '[data-reveal]') {
       const elements = gsap.utils.toArray<HTMLElement>(selector)
       for (const element of elements) {
         gsap.from(element, {
-          opacity: 0,
           y: 16,
           duration: 0.6,
           ease: 'power2.out',

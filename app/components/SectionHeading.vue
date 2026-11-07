@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
   <div class="max-w-2xl">
-    <p class="font-mono text-xs uppercase tracking-widest text-amber">
+    <p class="font-mono text-xs uppercase tracking-widest text-terminal">
       {{ eyebrow }}
     </p>
     <h2 class="mt-3 font-display text-4xl leading-tight text-bone md:text-5xl">

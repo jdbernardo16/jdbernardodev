@@ -24,7 +24,7 @@ describe('interactions', () => {
     const wrapper = await mountSuspended(CommandPalette, { props: { items } })
     window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))
     await nextTick()
-    await wrapper.get('input[type="search"]').setValue('edu')
+    await wrapper.get('input[type="text"]').setValue('edu')
     expect(wrapper.findAll('[role="option"]')).toHaveLength(1)
   })
 

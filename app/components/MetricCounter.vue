@@ -54,7 +54,7 @@ onMounted(() => {
 
 <template>
   <div ref="element">
-    <p class="font-display text-5xl text-amber">{{ display }}</p>
+    <p class="font-display text-5xl text-terminal">{{ display }}</p>
     <p class="mt-2 text-sm leading-relaxed text-muted">
       {{ label }}
       <span v-if="estimate" class="mt-1 block font-mono text-xs uppercase tracking-widest text-muted">

@@ -6,7 +6,7 @@
           class="flex aspect-square max-w-xs items-center justify-center rounded-2xl border border-line/60 bg-surface/30"
           aria-hidden="true"
         >
-          <span class="font-display text-8xl text-amber">JB</span>
+          <span class="font-display text-8xl text-terminal">JB</span>
         </div>
         <p class="mt-4 font-mono text-xs uppercase tracking-widest text-muted">
           Marilao, Bulacan, Philippines

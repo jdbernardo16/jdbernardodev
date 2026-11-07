@@ -3,6 +3,7 @@ import { workStudies } from './work'
 
 export const commandItems: CommandItem[] = [
   { label: 'Work', href: '/#work', section: 'Home' },
+  { label: 'Web work', href: '/#web-work', section: 'Home' },
   { label: 'Services', href: '/#services', section: 'Home' },
   { label: 'About', href: '/#about', section: 'Home' },
   { label: 'Security', href: '/#security', section: 'Home' },

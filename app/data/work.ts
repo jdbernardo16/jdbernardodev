@@ -11,7 +11,7 @@ export const workStudies: WorkStudy[] = [
       'Manual grading and record-keeping consumed time, and important follow-ups were easy to miss.',
     build: [
       'Automated the grading workflow from submission to recorded result.',
-      'Generated summaries and flagged low-confidence items for the teacher.',
+      'Generated summaries and flagged items for the teacher to review.',
       'Sent notifications when a student needed attention.',
     ],
     outcome: [
@@ -43,7 +43,7 @@ export const workStudies: WorkStudy[] = [
     outcome: [
       'Automated trade management.',
       'The trader can monitor rather than manually operate.',
-      'Every action is logged for review.',
+      'Actions are logged for review.',
     ],
     stack: ['Hermes', 'MT5 integration', 'Trading rules', 'Notifications'],
     metrics: [],
@@ -90,12 +90,12 @@ export const workStudies: WorkStudy[] = [
     build: [
       "Built a Node.js chatbot connected to the client's CRM.",
       'Searched live inventory before recommending a property.',
-      'Answered questions and shared viewing links.',
+      'Answered questions from live inventory.',
     ],
     outcome: [
       'Faster, more accurate inquiry handling.',
       'Recommendations grounded in real inventory.',
-      'Customers get useful advice without waiting for an agent.',
+      'Customers get useful advice from live inventory.',
     ],
     stack: ['Node.js', 'CRM integration', 'LLM', 'Retrieval'],
     metrics: [],

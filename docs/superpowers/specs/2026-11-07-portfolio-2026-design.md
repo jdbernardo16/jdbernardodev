@@ -401,3 +401,45 @@ The builder may decide without further approval:
 - **Client confidentiality** — use client types, not names, for NDA work; get permission for named clients.
 - **Content thinness** — four AI case studies and strong employer outcomes are enough if written concretely; avoid padding.
 - **Generalist positioning** — lead with AI automation and let web/security support it; do not headline "anything related to AI."
+
+---
+
+## 16. V2 — Developer Theme and Agent Lab (approved 2026-11-07)
+
+The first implementation was technically sound but visually contained: the agent canvas lived in a single square, and the developer theme was mostly typography. V2 makes the whole site behave like a working developer environment, with a playable game as the front door.
+
+### 16.1 Reference direction
+
+Researched references:
+
+- **Andrew McCarthy** — a dark field of tiny symbols that shifts with movement; project names scramble into place.
+- **Diogo Correia** — particle background behind a content-first hero.
+- **A1 interactive development collection** — custom cursor, WebGL/Three.js, data visualisation, but important text stays in the DOM.
+- **Terminal/IDE portfolios** (LiveTerm, VS Code-inspired portfolios) — shell chrome, file tabs, status bars, command lines.
+- **Programming puzzle games** — `while True: learn()` node graphs, TIS-100/Shenzhen I/O industrial terminal UI, Zachtronics-style run/log panels.
+- **Type** — Geist Mono / Berkeley Mono / JetBrains Mono for chrome and code; Inter for body. Keep Instrument Serif for the owner's name and large editorial headlines to avoid a generic all-mono look.
+
+### 16.2 Concept: “The portfolio is a live system”
+
+- **Page-wide ambient graph** — a fixed, low-opacity canvas behind all content: nodes, hairline connections, cursor parallax, scroll drift. It is ambient, not the main event. Pauses offscreen/hidden, caps DPR, and renders a static grid under reduced motion. All readable content stays in the DOM.
+- **Agent Lab hero game** — the main interactive piece. A terminal-window panel beside the headline. The visitor builds an agent pipeline for a mission by clicking nodes into slots, runs it, and reads the log. Correct order unlocks the matching case study. Three missions: E-commerce, Education, Trading. Forgiving: wrong order gives a specific hint, never a dead end. Keyboard accessible (buttons, not drag-only).
+- **Terminal chrome** — a fixed bottom status bar (`● agent online`, current section, local time, `⌘K`) and a command line behind `⌘K`. Commands actually navigate and filter: `help`, `ls`, `open <slug>`, `whoami`, `contact`, `missions`, `clear`.
+- **Case studies as repos** — repo header, file tabs (`README`, `flow`, `logs`, `outcome`), line-numbered code/log blocks, and a replay control. Still fully server-rendered and readable without JS.
+- **Micro-interactions** — text scramble on section headings, custom cursor ring/crosshair on fine pointers, magnetic CTAs, staggered scroll reveals, and a subtle grid/grain overlay.
+
+### 16.3 Visual system changes
+
+- Primary accent shifts to **terminal signal green**; amber remains for warnings/estimates; cyan for links/info; magenta used sparingly for syntax.
+- Background: near-black graphite with a faint 1px grid and grain.
+- Chrome: terminal title bars, path labels (`~/agent-lab`, `~/work/education-agent`), status dots, line numbers.
+- Keep the Instrument Serif display face for the name and major statements; use mono for metadata, labels, logs, and controls.
+- No fake macOS window clone, no purple gradients, no glassmorphism.
+
+### 16.4 Guardrails
+
+- A non-technical client must never need the terminal or the game to understand the offer, the work, or the contact path.
+- The game is a demonstration, not a gate. Every case study is reachable by scrolling.
+- The ambient canvas is decorative and must not affect LCP, CLS, readability, or battery life.
+- No invented claims. The 5x grading figure stays labeled as an owner estimate.
+- No agency names. The government incident stays "a government agency website."
+- Critical fixes from the v1 review land in the same pass: empty-endpoint contact failure, mobile menu keyboard access, cross-route header links, double-suffixed titles, missing web-work section, and unverified copy.

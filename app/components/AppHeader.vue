@@ -1,12 +1,61 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { nextTick, onMounted, onUnmounted, ref } from 'vue'
 import { site } from '~/data/site'
 
 const isMenuOpen = ref(false)
+const menuButton = ref<HTMLButtonElement | null>(null)
+const mobileNav = ref<HTMLElement | null>(null)
 const emit = defineEmits<{ 'open-command': [] }>()
 
-function closeMenu() {
+function focusableInMenu(): HTMLElement[] {
+  const links = Array.from(
+    mobileNav.value?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? [],
+  )
+  return menuButton.value ? [menuButton.value as unknown as HTMLElement, ...links] : links
+}
+
+function openMenu() {
+  isMenuOpen.value = true
+  nextTick(() => {
+    const firstLink = mobileNav.value?.querySelector<HTMLElement>('a[href]')
+    firstLink?.focus()
+  })
+}
+
+function closeMenu(restoreFocus = true) {
   isMenuOpen.value = false
+  if (restoreFocus) nextTick(() => menuButton.value?.focus())
+}
+
+function toggleMenu() {
+  if (isMenuOpen.value) closeMenu()
+  else openMenu()
+}
+
+function handleKeydown(event: KeyboardEvent) {
+  if (!isMenuOpen.value) return
+
+  if (event.key === 'Escape') {
+    event.preventDefault()
+    closeMenu()
+    return
+  }
+
+  if (event.key !== 'Tab') return
+
+  const focusable = focusableInMenu()
+  if (!focusable.length) return
+
+  const first = focusable[0]!
+  const last = focusable[focusable.length - 1]!
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault()
+    last.focus()
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault()
+    first.focus()
+  }
 }
 
 function openCommandPalette() {
@@ -15,49 +64,61 @@ function openCommandPalette() {
     window.dispatchEvent(new CustomEvent('open-command-palette'))
   }
 }
+
+onMounted(() => document.addEventListener('keydown', handleKeydown))
+onUnmounted(() => document.removeEventListener('keydown', handleKeydown))
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 border-b border-line/60 bg-ink/80 backdrop-blur">
+  <header class="sticky top-0 z-40 border-b border-line/60 bg-ink/85 backdrop-blur">
     <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
       <NuxtLink
         to="/"
-        class="font-display text-xl tracking-tight text-bone"
-        @click="closeMenu"
+        class="group flex items-center gap-2 font-mono text-sm text-bone"
+        @click="closeMenu(false)"
       >
-        Jaydee Bernardo
+        <span class="text-terminal">~/</span>
+        <span class="font-display text-xl tracking-tight">jaydee</span>
+        <span class="hidden text-muted transition-colors group-hover:text-terminal sm:inline">
+          bernardo
+        </span>
       </NuxtLink>
 
       <nav class="hidden items-center gap-8 md:flex" aria-label="Primary">
-        <a
+        <NuxtLink
           v-for="item in site.nav"
           :key="item.href"
-          :href="item.href"
-          class="font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-bone"
+          :to="`/${item.href}`"
+          class="font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-terminal"
         >
           {{ item.label }}
-        </a>
+        </NuxtLink>
       </nav>
 
       <div class="flex items-center gap-3">
-        <button type="button" class="sr-only" @click="openCommandPalette">
-          Open command palette
-        </button>
-
-        <a
-          href="#contact"
-          class="hidden rounded-full bg-amber px-4 py-2 font-mono text-xs font-semibold uppercase tracking-widest text-ink transition-transform hover:-translate-y-0.5 md:inline-flex"
-        >
-          Start a project
-        </a>
-
         <button
           type="button"
-          class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-bone md:hidden"
+          class="hidden rounded border border-line/60 px-2.5 py-1 font-mono text-xs text-muted transition-colors hover:border-terminal hover:text-terminal md:inline-flex"
+          @click="openCommandPalette"
+        >
+          ⌘K
+        </button>
+
+        <NuxtLink
+          to="/#contact"
+          class="hidden rounded-full bg-terminal px-4 py-2 font-mono text-xs font-semibold uppercase tracking-widest text-ink transition-transform hover:-translate-y-0.5 md:inline-flex"
+        >
+          Start a project
+        </NuxtLink>
+
+        <button
+          ref="menuButton"
+          type="button"
+          class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-bone md:hidden"
           aria-controls="mobile-nav"
           :aria-expanded="isMenuOpen"
           :aria-label="isMenuOpen ? 'Close menu' : 'Open menu'"
-          @click="isMenuOpen = !isMenuOpen"
+          @click="toggleMenu"
         >
           <svg
             v-if="!isMenuOpen"
@@ -88,25 +149,26 @@ function openCommandPalette() {
     <nav
       v-show="isMenuOpen"
       id="mobile-nav"
+      ref="mobileNav"
       class="border-t border-line/60 bg-ink px-6 py-4 md:hidden"
       aria-label="Mobile"
     >
-      <a
+      <NuxtLink
         v-for="item in site.nav"
         :key="item.href"
-        :href="item.href"
-        class="block py-2 font-mono text-sm uppercase tracking-widest text-muted"
-        @click="closeMenu"
+        :to="`/${item.href}`"
+        class="block py-3 font-mono text-sm uppercase tracking-widest text-muted"
+        @click="closeMenu(false)"
       >
         {{ item.label }}
-      </a>
-      <a
-        href="#contact"
-        class="mt-3 inline-flex rounded-full bg-amber px-4 py-2 font-mono text-xs font-semibold uppercase tracking-widest text-ink"
-        @click="closeMenu"
+      </NuxtLink>
+      <NuxtLink
+        to="/#contact"
+        class="mt-3 inline-flex rounded-full bg-terminal px-4 py-2 font-mono text-xs font-semibold uppercase tracking-widest text-ink"
+        @click="closeMenu(false)"
       >
         Start a project
-      </a>
+      </NuxtLink>
     </nav>
   </header>
 </template>

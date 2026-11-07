@@ -6,8 +6,8 @@ import AppFooter from '../../app/components/AppFooter.vue'
 describe('app shell', () => {
   it('renders the name, nav, and primary CTA', async () => {
     const wrapper = await mountSuspended(AppHeader)
-    expect(wrapper.text()).toContain('Jaydee Bernardo')
-    expect(wrapper.find('a[href="#work"]').exists()).toBe(true)
+    expect(wrapper.text().toLowerCase()).toContain('jaydee bernardo')
+    expect(wrapper.find('a[href="/#work"]').exists()).toBe(true)
     expect(wrapper.text()).toContain('Start a project')
   })
 

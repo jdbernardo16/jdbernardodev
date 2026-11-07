@@ -38,7 +38,7 @@ useAgentFlow({
         :key="node.id"
         class="rounded-xl border border-line/60 bg-surface/40 p-4"
       >
-        <span class="font-mono text-xs text-amber">0{{ index + 1 }}</span>
+        <span class="font-mono text-xs text-terminal">0{{ index + 1 }}</span>
         <span class="mt-2 block font-display text-xl text-bone">{{ node.label }}</span>
       </li>
     </ol>

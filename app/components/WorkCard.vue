@@ -7,10 +7,10 @@ defineProps<{ study: WorkStudy }>()
 <template>
   <article
     data-testid="work-card"
-    class="flex flex-col rounded-2xl border border-line/60 bg-surface/30 p-6 transition-colors hover:border-amber/50"
+    class="flex flex-col rounded-2xl border border-line/60 bg-surface/30 p-6 transition-colors hover:border-terminal/50"
   >
     <div class="flex items-center justify-between gap-3">
-      <p class="font-mono text-xs uppercase tracking-widest text-amber">
+      <p class="font-mono text-xs uppercase tracking-widest text-terminal">
         {{ study.category }}
       </p>
       <p class="font-mono text-xs uppercase tracking-widest text-muted">
@@ -47,7 +47,7 @@ defineProps<{ study: WorkStudy }>()
 
     <a
       :href="`/work/${study.slug}`"
-      class="mt-5 inline-flex font-mono text-xs uppercase tracking-widest text-bone transition-colors hover:text-amber"
+      class="mt-5 inline-flex font-mono text-xs uppercase tracking-widest text-bone transition-colors hover:text-terminal"
     >
       Read the case study →
     </a>

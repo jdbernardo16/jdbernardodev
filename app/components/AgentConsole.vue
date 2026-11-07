@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import type { WorkStudy } from '~/types/content'
 import { useAgentConsole } from '~/composables/useAgentConsole'
 import { useReducedMotion } from '~/composables/useReducedMotion'
@@ -12,13 +12,16 @@ const props = defineProps<{
 const prefersReducedMotion = useReducedMotion()
 const reduced = computed(() => props.reducedMotion ?? prefersReducedMotion.value)
 
-const { activeSlug, isPlaying, speed, visibleLines, setStudy, toggle, setSpeed } = useAgentConsole(
-  props.studies,
-  {
+const { activeSlug, isPlaying, speed, visibleLines, setStudy, toggle, setSpeed, begin } =
+  useAgentConsole(props.studies, {
     reducedMotion: reduced,
     autoStart: import.meta.client,
-  },
-)
+    initial: 'all',
+  })
+
+onMounted(() => {
+  if (!reduced.value) begin()
+})
 
 const activeStudy = computed(
   () => props.studies.find((study) => study.slug === activeSlug.value) ?? props.studies[0],
@@ -26,15 +29,16 @@ const activeStudy = computed(
 </script>
 
 <template>
-  <div class="overflow-hidden rounded-2xl border border-line/60 bg-ink">
+  <div class="overflow-hidden rounded-2xl border border-line/60 bg-ink" :data-reduced="reduced">
     <div class="flex flex-wrap gap-2 border-b border-line/60 p-3">
       <button
         v-for="study in studies"
         :key="study.slug"
         type="button"
         :data-testid="`console-tab-${study.slug}`"
+        :aria-pressed="activeSlug === study.slug"
         class="rounded-full px-3 py-1.5 font-mono text-xs uppercase tracking-widest transition-colors"
-        :class="activeSlug === study.slug ? 'bg-amber text-ink' : 'text-muted hover:text-bone'"
+        :class="activeSlug === study.slug ? 'bg-terminal text-ink' : 'text-muted hover:text-bone'"
         @click="setStudy(study.slug)"
       >
         {{ study.clientType }}
@@ -47,18 +51,18 @@ const activeStudy = computed(
           Sample agent run — synthetic events.
         </p>
 
-        <div v-if="!reduced" class="flex items-center gap-2">
+        <div v-if="!props.reducedMotion" class="motion-controls flex items-center gap-2">
           <button
             type="button"
             data-testid="console-play"
-            class="rounded-full border border-line px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-bone transition-colors hover:border-amber hover:text-amber"
+            class="rounded-full border border-line px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-bone transition-colors hover:border-terminal hover:text-terminal"
             @click="toggle"
           >
             {{ isPlaying ? 'Pause' : 'Play' }}
           </button>
           <button
             type="button"
-            class="rounded-full border border-line px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-bone transition-colors hover:border-amber hover:text-amber"
+            class="rounded-full border border-line px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-bone transition-colors hover:border-terminal hover:text-terminal"
             @click="setSpeed(speed === 1 ? 2 : 1)"
           >
             {{ speed }}x
@@ -89,7 +93,7 @@ const activeStudy = computed(
       <a
         v-if="activeStudy"
         :href="`/work/${activeStudy.slug}`"
-        class="mt-5 inline-flex font-mono text-xs uppercase tracking-widest text-bone transition-colors hover:text-amber"
+        class="mt-5 inline-flex font-mono text-xs uppercase tracking-widest text-bone transition-colors hover:text-terminal"
       >
         Open the case study →
       </a>

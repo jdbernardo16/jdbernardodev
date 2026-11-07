@@ -11,7 +11,7 @@
 
       <div class="space-y-6 md:col-span-7">
         <article class="rounded-2xl border border-line/60 bg-ink p-6">
-          <p class="font-mono text-xs uppercase tracking-widest text-amber">
+          <p class="font-mono text-xs uppercase tracking-widest text-terminal">
             Incident response
           </p>
           <h3 class="mt-3 font-display text-2xl text-bone">
@@ -25,7 +25,7 @@
         </article>
 
         <article class="rounded-2xl border border-line/60 bg-ink p-6">
-          <p class="font-mono text-xs uppercase tracking-widest text-amber">
+          <p class="font-mono text-xs uppercase tracking-widest text-terminal">
             VAPT
           </p>
           <h3 class="mt-3 font-display text-2xl text-bone">

@@ -13,7 +13,7 @@
       <div>
         <p class="font-display text-5xl text-bone">Days</p>
         <p class="mt-2 text-sm leading-relaxed text-muted">
-          to ship multi-platform systems instead of months
+          to ship multi-platform systems
         </p>
       </div>
     </div>

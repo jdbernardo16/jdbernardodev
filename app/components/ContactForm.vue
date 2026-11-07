@@ -63,7 +63,7 @@ async function submit() {
       <p class="font-display text-2xl text-bone">Thanks — I'll reply within 1–2 business days.</p>
       <p class="mt-2 text-sm text-muted">
         If you'd rather email directly, use
-        <a :href="`mailto:${site.email}`" class="text-amber underline">{{ site.email }}</a>.
+        <a :href="`mailto:${site.email}`" class="text-terminal underline">{{ site.email }}</a>.
       </p>
     </div>
 
@@ -79,9 +79,9 @@ async function submit() {
             autocomplete="name"
             :aria-invalid="Boolean(errors.name)"
             :aria-describedby="errors.name ? 'name-error' : undefined"
-            class="mt-2 w-full rounded-xl border border-line/60 bg-ink px-4 py-3 text-sm text-bone outline-none transition-colors focus:border-amber"
+            class="mt-2 w-full rounded-xl border border-line/60 bg-ink px-4 py-3 text-sm text-bone outline-none transition-colors focus:border-terminal"
           />
-          <p v-if="errors.name" id="name-error" class="mt-1 font-mono text-xs text-amber">
+          <p v-if="errors.name" id="name-error" class="mt-1 font-mono text-xs text-magenta">
             {{ errors.name }}
           </p>
         </div>
@@ -96,9 +96,9 @@ async function submit() {
             autocomplete="email"
             :aria-invalid="Boolean(errors.email)"
             :aria-describedby="errors.email ? 'email-error' : undefined"
-            class="mt-2 w-full rounded-xl border border-line/60 bg-ink px-4 py-3 text-sm text-bone outline-none transition-colors focus:border-amber"
+            class="mt-2 w-full rounded-xl border border-line/60 bg-ink px-4 py-3 text-sm text-bone outline-none transition-colors focus:border-terminal"
           />
-          <p v-if="errors.email" id="email-error" class="mt-1 font-mono text-xs text-amber">
+          <p v-if="errors.email" id="email-error" class="mt-1 font-mono text-xs text-magenta">
             {{ errors.email }}
           </p>
         </div>
@@ -115,12 +115,12 @@ async function submit() {
             name="projectType"
             :aria-invalid="Boolean(errors.projectType)"
             :aria-describedby="errors.projectType ? 'project-type-error' : undefined"
-            class="mt-2 w-full rounded-xl border border-line/60 bg-ink px-4 py-3 text-sm text-bone outline-none transition-colors focus:border-amber"
+            class="mt-2 w-full rounded-xl border border-line/60 bg-ink px-4 py-3 text-sm text-bone outline-none transition-colors focus:border-terminal"
           >
             <option value="">Select one</option>
             <option v-for="type in projectTypes" :key="type" :value="type">{{ type }}</option>
           </select>
-          <p v-if="errors.projectType" id="project-type-error" class="mt-1 font-mono text-xs text-amber">
+          <p v-if="errors.projectType" id="project-type-error" class="mt-1 font-mono text-xs text-magenta">
             {{ errors.projectType }}
           </p>
         </div>
@@ -133,7 +133,7 @@ async function submit() {
             id="budget"
             v-model="form.budget"
             name="budget"
-            class="mt-2 w-full rounded-xl border border-line/60 bg-ink px-4 py-3 text-sm text-bone outline-none transition-colors focus:border-amber"
+            class="mt-2 w-full rounded-xl border border-line/60 bg-ink px-4 py-3 text-sm text-bone outline-none transition-colors focus:border-terminal"
           >
             <option value="">Select a range</option>
             <option v-for="range in budgets" :key="range" :value="range">{{ range }}</option>
@@ -152,9 +152,9 @@ async function submit() {
           rows="5"
           :aria-invalid="Boolean(errors.message)"
           :aria-describedby="errors.message ? 'message-error' : undefined"
-          class="mt-2 w-full rounded-xl border border-line/60 bg-ink px-4 py-3 text-sm text-bone outline-none transition-colors focus:border-amber"
+          class="mt-2 w-full rounded-xl border border-line/60 bg-ink px-4 py-3 text-sm text-bone outline-none transition-colors focus:border-terminal"
         />
-        <p v-if="errors.message" id="message-error" class="mt-1 font-mono text-xs text-amber">
+        <p v-if="errors.message" id="message-error" class="mt-1 font-mono text-xs text-magenta">
           {{ errors.message }}
         </p>
       </div>
@@ -171,11 +171,11 @@ async function submit() {
           />
           <span>
             I agree to the
-            <NuxtLink to="/privacy" class="text-amber underline">privacy notice</NuxtLink>
+            <NuxtLink to="/privacy" class="text-terminal underline">privacy notice</NuxtLink>
             and to being contacted about this inquiry.
           </span>
         </label>
-        <p v-if="errors.consent" id="consent-error" class="mt-1 font-mono text-xs text-amber">
+        <p v-if="errors.consent" id="consent-error" class="mt-1 font-mono text-xs text-magenta">
           {{ errors.consent }}
         </p>
       </div>
@@ -192,19 +192,28 @@ async function submit() {
 
       <p v-if="!endpoint" class="rounded-xl border border-line/60 bg-ink p-4 font-mono text-xs leading-relaxed text-muted">
         The form endpoint is not configured yet. Email
-        <a :href="mailtoHref" class="text-amber underline">{{ site.email }}</a>
+        <a :href="mailtoHref" class="text-terminal underline">{{ site.email }}</a>
         directly and I'll reply within 1–2 business days.
       </p>
 
+      <a
+        v-if="!endpoint"
+        :href="mailtoHref"
+        data-testid="contact-mailto"
+        class="inline-flex items-center rounded-full bg-terminal px-6 py-3 font-mono text-xs font-semibold uppercase tracking-widest text-ink transition-transform hover:-translate-y-0.5"
+      >
+        Send via email
+      </a>
       <button
+        v-else
         type="submit"
         :disabled="status === 'sending'"
-        class="inline-flex items-center rounded-full bg-amber px-6 py-3 font-mono text-xs font-semibold uppercase tracking-widest text-ink transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+        class="inline-flex items-center rounded-full bg-terminal px-6 py-3 font-mono text-xs font-semibold uppercase tracking-widest text-ink transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {{ status === 'sending' ? 'Sending…' : 'Send inquiry' }}
       </button>
 
-      <p v-if="status === 'error'" role="alert" class="font-mono text-xs text-amber">
+      <p v-if="status === 'error'" role="alert" class="font-mono text-xs text-magenta">
         Something went wrong. Email
         <a :href="`mailto:${site.email}`" class="underline">{{ site.email }}</a>
         instead.

@@ -12,6 +12,7 @@ import type { ConsoleLine, WorkStudy } from '~/types/content'
 export interface UseAgentConsoleOptions {
   reducedMotion?: Ref<boolean>
   autoStart?: boolean
+  initial?: 'one' | 'all'
 }
 
 export interface AgentConsoleState {
@@ -22,6 +23,7 @@ export interface AgentConsoleState {
   setStudy: (slug: string) => void
   toggle: () => void
   setSpeed: (speed: 1 | 2) => void
+  begin: () => void
 }
 
 export function useAgentConsole(
@@ -29,9 +31,11 @@ export function useAgentConsole(
   options: UseAgentConsoleOptions = {},
 ): AgentConsoleState {
   const activeSlug = ref(studies[0]?.slug ?? '')
-  const isPlaying = ref(!options.reducedMotion?.value)
+  const isPlaying = ref(options.initial === 'all' ? false : !options.reducedMotion?.value)
   const speed = ref<1 | 2>(1)
-  const lineIndex = ref(1)
+  const lineIndex = ref(
+    options.initial === 'all' ? (studies[0]?.consoleLines.length ?? 0) : 1,
+  )
   const autoStart = options.autoStart ?? true
 
   const currentStudy = computed(() => studies.find((study) => study.slug === activeSlug.value))
@@ -106,9 +110,23 @@ export function useAgentConsole(
     if (isPlaying.value) schedule()
   }
 
+  function begin() {
+    if (options.reducedMotion?.value) {
+      lineIndex.value = currentStudy.value?.consoleLines.length ?? 0
+      isPlaying.value = false
+      clearTimer()
+      return
+    }
+
+    lineIndex.value = 1
+    isPlaying.value = true
+    schedule()
+  }
+
   if (options.reducedMotion) {
     watch(options.reducedMotion, (reduced) => {
       if (reduced) {
+        lineIndex.value = currentStudy.value?.consoleLines.length ?? 0
         isPlaying.value = false
         clearTimer()
       } else {
@@ -121,7 +139,7 @@ export function useAgentConsole(
 
   if (getCurrentScope()) onScopeDispose(clearTimer)
 
-  schedule()
+  if (options.initial !== 'all') schedule()
 
-  return { activeSlug, isPlaying, speed, visibleLines, setStudy, toggle, setSpeed }
+  return { activeSlug, isPlaying, speed, visibleLines, setStudy, toggle, setSpeed, begin }
 }

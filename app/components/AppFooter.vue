@@ -8,7 +8,8 @@ const year = new Date().getFullYear()
   <footer class="border-t border-line/60 bg-ink">
     <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-12 md:flex-row md:items-end md:justify-between">
       <div>
-        <p class="font-display text-3xl text-bone">Jaydee Bernardo</p>
+        <p class="font-mono text-xs text-terminal">~/jaydee/bernardo</p>
+        <p class="mt-2 font-display text-3xl text-bone">Jaydee Bernardo</p>
         <p class="mt-1 font-mono text-xs uppercase tracking-widest text-muted">
           {{ site.title }}
         </p>
@@ -17,7 +18,7 @@ const year = new Date().getFullYear()
       <nav class="flex flex-wrap gap-x-6 gap-y-2" aria-label="Contact">
         <a
           :href="`mailto:${site.email}`"
-          class="font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-amber"
+          class="font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-terminal"
         >
           {{ site.email }}
         </a>
@@ -25,7 +26,7 @@ const year = new Date().getFullYear()
           :href="site.linkedin"
           target="_blank"
           rel="noopener noreferrer"
-          class="font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-amber"
+          class="font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-terminal"
         >
           LinkedIn
         </a>
@@ -33,16 +34,30 @@ const year = new Date().getFullYear()
           :href="site.github"
           target="_blank"
           rel="noopener noreferrer"
-          class="font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-amber"
+          class="font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-terminal"
         >
           GitHub
         </a>
         <NuxtLink
           to="/privacy"
-          class="font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-amber"
+          class="font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-terminal"
         >
           Privacy
         </NuxtLink>
+        <a
+          :href="site.github"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-terminal"
+        >
+          Source
+        </a>
+        <a
+          href="#main"
+          class="font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-terminal"
+        >
+          Back to top
+        </a>
       </nav>
     </div>
 

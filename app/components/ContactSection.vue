@@ -15,7 +15,7 @@ import { site } from '~/data/site'
         <div class="mt-8 space-y-3 font-mono text-xs uppercase tracking-widest">
           <a
             :href="`mailto:${site.email}`"
-            class="block text-bone transition-colors hover:text-amber"
+            class="block text-bone transition-colors hover:text-terminal"
           >
             {{ site.email }}
           </a>
@@ -23,7 +23,7 @@ import { site } from '~/data/site'
             :href="site.linkedin"
             target="_blank"
             rel="noopener noreferrer"
-            class="block text-muted transition-colors hover:text-amber"
+            class="block text-muted transition-colors hover:text-terminal"
           >
             LinkedIn
           </a>
@@ -31,7 +31,7 @@ import { site } from '~/data/site'
             :href="site.github"
             target="_blank"
             rel="noopener noreferrer"
-            class="block text-muted transition-colors hover:text-amber"
+            class="block text-muted transition-colors hover:text-terminal"
           >
             GitHub
           </a>

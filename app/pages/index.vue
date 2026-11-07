@@ -11,6 +11,8 @@ useSeoMeta({
   ogDescription:
     'AI systems that automate real work. AI agents, assistants, integrations, and secure full-stack delivery.',
   ogImage: '/og-image.svg',
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
   twitterCard: 'summary_large_image',
 })
 
@@ -40,6 +42,7 @@ useScrollReveal()
     <ProofStrip />
     <ServicesSection :services="services" />
     <WorkSection :studies="workStudies" />
+    <WebWorkSection />
     <SecuritySection />
     <AboutSection />
     <ContactSection />
