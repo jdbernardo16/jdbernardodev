@@ -11,5 +11,6 @@ import { workStudies } from '~/data/work'
     <WorkSection :studies="workStudies" />
     <SecuritySection />
     <AboutSection />
+    <ContactSection />
   </div>
 </template>
