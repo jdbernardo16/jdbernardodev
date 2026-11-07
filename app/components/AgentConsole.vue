@@ -10,7 +10,9 @@ const props = defineProps<{
 }>()
 
 const prefersReducedMotion = useReducedMotion()
-const reduced = computed(() => props.reducedMotion ?? prefersReducedMotion.value)
+const reduced = computed(
+  () => props.reducedMotion === true || prefersReducedMotion.value,
+)
 
 const { activeSlug, isPlaying, speed, visibleLines, setStudy, toggle, setSpeed, begin } =
   useAgentConsole(props.studies, {

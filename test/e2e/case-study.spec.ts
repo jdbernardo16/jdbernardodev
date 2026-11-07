@@ -4,7 +4,8 @@ test('renders a case study with problem, build, and outcome', async ({ page }) =
   await page.goto('/work/education-agent')
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Grading automation agent')
   await expect(page.getByRole('heading', { name: 'Problem' })).toBeVisible()
-  await expect(page.getByRole('heading', { name: 'Outcome' })).toBeVisible()
+  await page.getByRole('tab', { name: 'Outcome' }).click()
+  await expect(page.getByRole('tabpanel', { name: 'Outcome' })).toBeVisible()
   await expect(page.getByText('5x').first()).toBeVisible()
 })
 

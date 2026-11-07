@@ -6,7 +6,9 @@ useSeoMeta({
   description: 'How this site handles contact form data.',
   ogTitle: 'Privacy — Jaydee Bernardo',
   ogDescription: 'How this site handles contact form data.',
-  ogImage: '/og-image.svg',
+  ogImage: '/og-image.png',
+  ogImageAlt: 'Jaydee Bernardo — AI systems that automate real work.',
+  twitterImage: '/og-image.png',
   ogImageWidth: 1200,
   ogImageHeight: 630,
 })

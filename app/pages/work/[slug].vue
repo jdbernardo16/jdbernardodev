@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { nextTick, onMounted, ref } from 'vue'
 import { getWorkStudy, workStudies } from '~/data/work'
 
 const route = useRoute()
@@ -28,12 +28,36 @@ onMounted(() => {
   mounted.value = true
 })
 
+function handleTabKeydown(event: KeyboardEvent, index: number) {
+  const keys = ['ArrowLeft', 'ArrowRight', 'Home', 'End']
+  if (!keys.includes(event.key)) return
+
+  event.preventDefault()
+  const current = event.currentTarget as HTMLElement
+
+  let nextIndex = index
+  if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length
+  if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length
+  if (event.key === 'Home') nextIndex = 0
+  if (event.key === 'End') nextIndex = tabs.length - 1
+
+  activeTab.value = tabs[nextIndex]!.id
+
+  nextTick(() => {
+    const tablist = current.parentElement
+    const buttons = tablist?.querySelectorAll<HTMLElement>('[role="tab"]')
+    buttons?.[nextIndex]?.focus()
+  })
+}
+
 useSeoMeta({
   title: `${study.title} — Jaydee Bernardo`,
   description: study.summary,
   ogTitle: `${study.title} — Jaydee Bernardo`,
   ogDescription: study.summary,
-  ogImage: '/og-image.svg',
+  ogImage: '/og-image.png',
+  ogImageAlt: 'Jaydee Bernardo — AI systems that automate real work.',
+  twitterImage: '/og-image.png',
   ogImageWidth: 1200,
   ogImageHeight: 630,
   twitterCard: 'summary_large_image',
@@ -96,7 +120,7 @@ useScrollReveal()
           class="flex gap-1 overflow-x-auto border-b border-line/60 px-3 py-2"
         >
           <button
-            v-for="tab in tabs"
+            v-for="(tab, index) in tabs"
             :id="`tab-${tab.id}`"
             :key="tab.id"
             type="button"
@@ -107,6 +131,7 @@ useScrollReveal()
             class="shrink-0 rounded-full px-3 py-1.5 font-mono text-xs uppercase tracking-widest transition-colors"
             :class="activeTab === tab.id ? 'bg-terminal text-ink' : 'text-muted hover:text-bone'"
             @click="activeTab = tab.id"
+            @keydown="handleTabKeydown($event, index)"
           >
             {{ tab.label }}
           </button>

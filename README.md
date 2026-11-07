@@ -19,7 +19,7 @@ Open `http://localhost:3000`.
 pnpm dev          # development server
 pnpm build        # production build
 pnpm generate     # static generation to .output/public
-pnpm preview      # preview the production build
+pnpm dlx serve .output/public -l 3000   # preview the static build
 pnpm typecheck    # TypeScript check
 pnpm test         # unit + Nuxt component tests
 pnpm test:e2e     # Playwright end-to-end tests
@@ -46,7 +46,13 @@ If the endpoint is empty, the form falls back to a `mailto:` link instead of pos
 
 ## Social image
 
-`public/og-image.svg` is a placeholder. Replace it with a 1200×630 PNG before launch and update the `ogImage` paths in:
+`public/og-image.png` is the 1200×630 social card. The editable source is `public/og-image.svg`; regenerate the PNG after changing it:
+
+```bash
+pnpm dlx sharp-cli -i public/og-image.svg -o public/og-image.png
+```
+
+The `ogImage`, `ogImageAlt`, and `twitterImage` paths are set in:
 
 - `app/pages/index.vue`
 - `app/pages/work/[slug].vue`

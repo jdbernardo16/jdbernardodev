@@ -7,6 +7,9 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: ['gsap', 'gsap/ScrollTrigger', 'three', 'three/addons/renderers/CSS2DRenderer.js'],
+    },
   },
   fonts: {
     families: [

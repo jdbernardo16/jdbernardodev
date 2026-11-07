@@ -13,6 +13,7 @@ const {
   missionIndex,
   mission,
   selected,
+  status,
   logs,
   completed,
   addNode,
@@ -68,6 +69,13 @@ function toneClass(tone: string) {
         {{ item.label }}
       </button>
     </div>
+
+    <AgentPipeline3D
+      :mission="mission"
+      :selected="selected"
+      :status="status"
+      @select="addNode"
+    />
 
     <div class="p-4 md:p-5">
       <p class="font-mono text-xs uppercase tracking-widest text-terminal">mission brief</p>

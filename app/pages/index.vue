@@ -10,7 +10,9 @@ useSeoMeta({
   ogTitle: 'Jaydee Bernardo — Senior AI Engineer & Full-Stack Developer',
   ogDescription:
     'AI systems that automate real work. AI agents, assistants, integrations, and secure full-stack delivery.',
-  ogImage: '/og-image.svg',
+  ogImage: '/og-image.png',
+  ogImageAlt: 'Jaydee Bernardo — AI systems that automate real work.',
+  twitterImage: '/og-image.png',
   ogImageWidth: 1200,
   ogImageHeight: 630,
   twitterCard: 'summary_large_image',
