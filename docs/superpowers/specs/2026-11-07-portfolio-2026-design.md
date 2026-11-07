@@ -443,3 +443,30 @@ Researched references:
 - No invented claims. The 5x grading figure stays labeled as an owner estimate.
 - No agency names. The government incident stays "a government agency website."
 - Critical fixes from the v1 review land in the same pass: empty-endpoint contact failure, mobile menu keyboard access, cross-route header links, double-suffixed titles, missing web-work section, and unverified copy.
+
+---
+
+## 17. V3 — Bug Smash Hero (approved 2026-11-07)
+
+The Agent Lab and Three.js pipeline were scrapped. The hero now uses **Bug Smash**, a small arcade game that fits the developer theme without requiring the visitor to learn an AI workflow.
+
+### The game
+
+- A terminal-window panel titled `~/bug-smash`.
+- A 3×3 grid of source files (`auth.ts`, `api.ts`, `db.ts`, `ui.tsx`, `cache.ts`, `queue.ts`, `mail.ts`, `pay.ts`, `deploy.sh`).
+- Press **run build**. Bugs spawn in random files and expire after roughly 0.7–1.3 seconds.
+- Click/tap a bug, or press its cell number `1–9`, to squash it.
+- Score, combo multiplier, 30-second build timer, and three lives.
+- Missed bugs "ship" and cost a life. At zero lives or zero seconds, the build ends.
+- Result screen: bugs squashed, score, best score (localStorage), replay, and a `Start a project` CTA.
+- Under `prefers-reduced-motion`, the game is paused with a static panel and a direct contact CTA.
+- No JavaScript: the game is optional; the headline, services, case studies, and contact remain readable.
+- No Three.js, no WebGL, no canvas: DOM-only for performance and accessibility.
+
+### Why it replaced Agent Lab
+
+- It is a real game, not a guided demo.
+- It is instantly understandable without reading a mission brief.
+- It works with mouse, touch, and keyboard.
+- It is short enough to replay and light enough to keep the hero fast.
+- It keeps the developer theme without pretending the visitor is building an AI agent.

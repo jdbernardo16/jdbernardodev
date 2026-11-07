@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
-      include: ['gsap', 'gsap/ScrollTrigger', 'three', 'three/addons/renderers/CSS2DRenderer.js'],
+      include: ['gsap', 'gsap/ScrollTrigger'],
     },
   },
   fonts: {

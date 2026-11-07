@@ -12,3 +12,4 @@ playwright-report
 lighthouse.json
 .superpowers
 .codegraph
+lighthouse*.json

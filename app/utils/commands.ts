@@ -31,7 +31,7 @@ export function runCommand(command: ParsedCommand, context: CommandContext): Com
           '  open <slug>     open a case study',
           '  whoami          print the short bio',
           '  contact         jump to the contact section',
-          '  missions        list the agent lab missions',
+          '  play            point to the Bug Smash game',
           '  clear           clear the terminal',
           '  close           close the terminal',
         ],
@@ -63,13 +63,11 @@ export function runCommand(command: ParsedCommand, context: CommandContext): Com
       }
     case 'contact':
       return { output: [`email: ${context.email}`, 'opening contact section'], navigate: '/#contact', close: true }
-    case 'missions':
+    case 'play':
       return {
         output: [
-          'agent lab missions:',
-          '  ecommerce — order monitoring',
-          '  education — grading automation',
-          '  trading   — mt5 operations',
+          'bug smash is in the hero.',
+          'scroll up and press "run build" — click/tap a bug or press 1–9 to squash it.',
         ],
       }
     case 'clear':

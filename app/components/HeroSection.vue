@@ -47,15 +47,15 @@ import { site } from '~/data/site'
         <div class="mt-10 border-t border-line/40 pt-4 font-mono text-xs text-muted">
           <p><span class="text-terminal">$</span> status</p>
           <p class="mt-1 text-bone">
-            <span class="text-terminal">●</span> agent online · building in public
+            <span class="text-terminal">●</span> build passing · agent online
           </p>
         </div>
       </div>
 
       <div class="md:col-span-7">
-        <AgentLab />
+        <BugSmashGame />
         <p class="mt-3 text-center font-mono text-xs uppercase tracking-widest text-muted">
-          Build the pipeline. Run the agent. Read the log.
+          Squash the bugs. Ship the build. Start a project.
         </p>
       </div>
     </div>
